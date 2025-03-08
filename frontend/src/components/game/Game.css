@@ -1,0 +1,426 @@
+.game {
+  min-height: calc(100vh - 80px);
+  background-color: #1a1a1a;
+  padding: 2rem;
+  color: #fff;
+}
+
+.game-header {
+  background-color: rgba(42, 42, 42, 0.9);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+  text-align: left;
+}
+
+.game-info h2 {
+  margin: 0;
+  color: #4a90e2;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.timer {
+  font-size: 1.2rem;
+  color: #4a90e2;
+}
+
+.player-info {
+  text-align: right;
+}
+
+.current-player {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.role-info {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 1rem;
+  border-left: 3px solid #4a90e2;
+}
+
+.game-id {
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.game-id:hover {
+  color: #4a90e2;
+}
+
+.highlight {
+  color: #4a90e2;
+  font-weight: bold;
+  margin: 0 0.3rem;
+}
+
+.copy-icon {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.copy-icon:hover {
+  opacity: 1;
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.players-list {
+  background-color: #2a2a2a;
+  padding: 1.5rem;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.players-list h3 {
+  color: #4a90e2;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.players-status-info {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.status-indicator {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.status-indicator.alive {
+  color: #4ae24a;
+}
+
+.status-indicator.dead {
+  color: #e24a4a;
+}
+
+.player-card {
+  background-color: #333;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid transparent;
+}
+
+.player-card:hover {
+  background-color: #444;
+  border-color: #4a90e2;
+}
+
+.player-card.alive {
+  border-left: 3px solid #4ae24a;
+}
+
+.player-card.dead {
+  border-left: 3px solid #e24a4a;
+  opacity: 0.7;
+  background-color: #2a2a2a;
+}
+
+.player-info-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.alive {
+  background-color: #4ae24a;
+  box-shadow: 0 0 5px rgba(74, 226, 74, 0.5);
+}
+
+.status-dot.dead {
+  background-color: #e24a4a;
+  box-shadow: 0 0 5px rgba(226, 74, 74, 0.5);
+}
+
+.player-badges {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.host-badge {
+  background-color: #4a90e2;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+.status-badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-badge.alive {
+  background-color: rgba(74, 226, 74, 0.2);
+  color: #4ae24a;
+}
+
+.status-badge.dead {
+  background-color: rgba(226, 74, 74, 0.2);
+  color: #e24a4a;
+}
+
+.chat-container {
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.chat-message {
+  background-color: #333;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+}
+
+.chat-input {
+  display: flex;
+  padding: 1rem;
+  background-color: #333;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+  background-color: #444;
+  color: white;
+}
+
+.chat-input input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4a90e2;
+}
+
+.chat-input button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chat-input button:hover {
+  background-color: #357abd;
+}
+
+.start-game-section {
+  background-color: rgba(74, 144, 226, 0.1);
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.player-count {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.min-players {
+  color: #666;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.start-game-button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.start-game-button:hover:not(:disabled) {
+  background-color: #357abd;
+  transform: translateY(-1px);
+}
+
+.start-game-button:disabled {
+  background-color: #2a2a2a;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.phase-info {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border: 2px solid;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.phase-info h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.phase-description {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.8rem 0;
+  font-size: 1.1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  height: 100%;
+  transition: width 1s linear;
+  border-radius: 4px;
+}
+
+.timer-text {
+  color: white;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timer .highlight {
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.timer .duration {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+
+/* Phase-specific styles */
+.phase-info[data-phase="night"] {
+  background-color: #34495e;
+  border-color: #2c3e50;
+}
+
+.phase-info[data-phase="discuss"] {
+  background-color: #2ecc71;
+  border-color: #27ae60;
+}
+
+.phase-info[data-phase="vote"] {
+  background-color: #e74c3c;
+  border-color: #c0392b;
+}
+
+/* Timer warning states */
+.timer.warning .highlight {
+  color: #f1c40f;
+  animation: pulse 1s infinite;
+}
+
+.timer.urgent .highlight {
+  color: #ff5252;
+  animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.advance-phase-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.advance-phase-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateX(2px);
+} 

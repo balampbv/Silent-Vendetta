@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark background -->
+  <rect width="192" height="192" rx="36" fill="#1a1a1a"/>
+  
+  <!-- Mask outline -->
+  <path d="M48 60C48 60 60 48 96 48C132 48 144 60 144 60L150 72C150 72 156 84 156 96C156 120 132 144 96 144C60 144 36 120 36 96C36 84 42 72 42 72L48 60Z" fill="#ffffff"/>
+  
+  <!-- Eyebrows -->
+  <path d="M66 78C66 78 78 72 96 72C114 72 126 78 126 78" stroke="#1a1a1a" stroke-width="9" stroke-linecap="round"/>
+  <path d="M66 84L78 90" stroke="#1a1a1a" stroke-width="9" stroke-linecap="round"/>
+  <path d="M126 84L114 90" stroke="#1a1a1a" stroke-width="9" stroke-linecap="round"/>
+  
+  <!-- Eyes -->
+  <path d="M72 96C72 96 78 102 84 102C90 102 96 96 96 96" fill="#1a1a1a"/>
+  <path d="M96 96C96 96 102 102 108 102C114 102 120 96 120 96" fill="#1a1a1a"/>
+  
+  <!-- Mustache and Smile -->
+  <path d="M78 114C78 114 84 120 96 120C108 120 114 114 114 114" stroke="#1a1a1a" stroke-width="9" stroke-linecap="round"/>
+  <path d="M96 114L96 126" stroke="#1a1a1a" stroke-width="9" stroke-linecap="round"/>
+</svg> 
