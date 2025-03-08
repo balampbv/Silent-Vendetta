@@ -423,4 +423,62 @@
 .advance-phase-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
   transform: translateX(2px);
+}
+
+.waiting-info {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: rgba(74, 144, 226, 0.1);
+  border: 2px solid rgba(74, 144, 226, 0.3);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.waiting-info h2 {
+  color: #4a90e2;
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.waiting-info .player-count {
+  font-size: 1.2rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.waiting-info .min-players {
+  color: #666;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}
+
+.waiting-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.return-home-button {
+  background-color: transparent;
+  color: #4a90e2;
+  border: 2px solid #4a90e2;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+}
+
+.return-home-button:hover {
+  background-color: rgba(74, 144, 226, 0.1);
+  transform: translateY(-1px);
+}
+
+.waiting-info .start-game-button {
+  flex: 1;
 } 

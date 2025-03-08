@@ -25,6 +25,7 @@ const Game: React.FC = () => {
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [mafiaVotes, setMafiaVotes] = useState<{[key: string]: string}>({});
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
+  const [playerCount, setPlayerCount] = useState<number>(0);
 
   useEffect(() => {
     // If no player name is provided, redirect back to lobby
@@ -74,6 +75,9 @@ const Game: React.FC = () => {
             }
             return newState;
           });
+          break;
+        case 'playerCount':
+          setPlayerCount(data.data);
           break;
         case 'chat':
           setChat(prev => [...prev, data.data]);
@@ -266,6 +270,32 @@ const Game: React.FC = () => {
     <div className="game">
       <div className="game-header">
         <div className="game-info">
+          {gameState.phase === 'waiting' && (
+            <div className="waiting-info">
+              <h2>Waiting for Players</h2>
+              <p className="player-count">
+                Players: {playerCount} / {gameState.maxPlayers}
+                <span className="min-players">(Minimum {gameState.minPlayers} required)</span>
+              </p>
+              <div className="waiting-actions">
+                <button 
+                  className="return-home-button"
+                  onClick={() => navigate('/')}
+                >
+                  ← Return to Home
+                </button>
+                {state?.isHost && (
+                  <button 
+                    className="start-game-button"
+                    onClick={startGame}
+                    disabled={playerCount < gameState.minPlayers}
+                  >
+                    Start Game
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
           {gameState.phase !== 'waiting' && gameState.phase !== 'gameover' && (
             <div 
               className="phase-info"
@@ -291,7 +321,7 @@ const Game: React.FC = () => {
                   <span className="duration">/{getPhaseInfo().duration}s</span>
                 </div>
               </div>
-              {state?.isHost && (
+              {state?.isHost && timeRemaining === 0 && (
                 <button 
                   className="advance-phase-button"
                   onClick={advancePhase}

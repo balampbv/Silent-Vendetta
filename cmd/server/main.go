@@ -47,6 +47,12 @@ func main() {
 			return err
 		}
 
+		// Send initial player count
+		wsManager.SendToGame(game.ID, websocket.Message{
+			Type: "playerCount",
+			Data: len(game.Players),
+		})
+
 		return c.JSON(fiber.Map{
 			"gameId": game.ID,
 		})
@@ -82,16 +88,15 @@ func main() {
 		}
 
 		log.Printf("Player %s successfully joined game. Total players: %d", req.PlayerName, len(game.Players))
-		log.Printf("Game state after join: %+v", game)
-		for id, player := range game.Players {
-			log.Printf("Player %s state - ID: %s, Name: %s, IsAlive: %v, IsHost: %v, Role: %v",
-				id, player.ID, player.Name, player.IsAlive, player.IsHost, player.Role)
-		}
 
-		// Broadcast updated game state to all players
+		// Broadcast updated game state and player count
 		wsManager.SendToGame(gameID, websocket.Message{
 			Type: "gameState",
 			Data: game,
+		})
+		wsManager.SendToGame(gameID, websocket.Message{
+			Type: "playerCount",
+			Data: len(game.Players),
 		})
 
 		return c.JSON(fiber.Map{
@@ -183,23 +188,29 @@ func main() {
 		// Register client
 		wsManager.Register <- client
 
-		// Send initial game state
+		// Send initial game state and player count
 		game, err := gameManager.GetGame(gameID)
 		if err == nil {
 			log.Printf("Sending initial game state. Players count: %d", len(game.Players))
-			log.Printf("Game state: %+v", game)
-			for id, player := range game.Players {
-				log.Printf("Player %s state - ID: %s, Name: %s, IsAlive: %v, IsHost: %v, Role: %v",
-					id, player.ID, player.Name, player.IsAlive, player.IsHost, player.Role)
-			}
 			client.Conn.WriteJSON(websocket.Message{
 				Type: "gameState",
 				Data: game,
+			})
+			client.Conn.WriteJSON(websocket.Message{
+				Type: "playerCount",
+				Data: len(game.Players),
 			})
 		}
 
 		defer func() {
 			wsManager.Unregister <- client
+			// When a client disconnects, update player count
+			if game, err := gameManager.GetGame(gameID); err == nil {
+				wsManager.SendToGame(gameID, websocket.Message{
+					Type: "playerCount",
+					Data: len(game.Players),
+				})
+			}
 			c.Close()
 		}()
 

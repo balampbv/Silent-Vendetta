@@ -2,7 +2,7 @@
 
 A real-time multiplayer social deduction game where deception is your greatest weapon, and trust is a fragile illusion.  
 
-> 🤖 An experiment in game development using agentic AI.
+> Note: 🤖 An experiment in game development using agentic AI.
 
 ## Project Structure
 
